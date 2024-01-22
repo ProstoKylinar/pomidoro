@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Pomodoro - For Productivity</title>
+  <script src="/static/js/index.js"></script>
+</head>
+<body onload="selectTimer('pomodoro');">
+<div id="player" style="position: absolute; top: -9999px; left: -9999px;"></div>
+  <div id="main-template">
+    <div class="row">
+      <div class="cell" id="main">
+        <main class="row">
+          <div class="cell">
+            <div class="row">
+              <div class="cell" id="header-cell-left" >
+                <div class="row">
+                  <div class="cell">
+                    
+                  </div>
+                  <div class="cell">
+                    <div></div>
+                  </div>
+                  <div class="cell">
+                    <div></div>
+                  </div>
+                </div>
+              </div>
+              <div class="cell" id="header-cell-middle">
+                <div class="row">
+                  <div class="cell">
+                    <div>
+                      <button class="button" id="pomodoro" onclick="selectTimer('pomodoro');">Pomodoro</button>
+                    </div>
+                  </div>
+                  <div class="cell">
+                    <div>
+                      <button class="button" id="short-break" onclick="selectTimer('short-break');">Короткий перерыв</button>
+                    </div>
+                  </div>
+                  <div class="cell">
+                    <div>
+                      <button class="button" id="long-break" onclick="selectTimer('long-break')">Долгий перерыв</button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </main>
+      </div>
+    </div>
+        
+    <p id="countdown">25:00</p>
+    <div class="row">
+      <div class="cell"></div>
+      <div class="cell">
+        <div class="row">
+          <div id="play">
+            <button onclick="play();" class="button" id="PlayBtn" title="pause/play timer">Play</button>
+            <button onclick="play();" class="button" id="PauseBtn" title="pause/play timer" style="display:none">Stop</button>
+          </div>
+
+          <div id="reset">
+            <button onclick="resetTime();" class="button" title="reset timer">Reset</button>
+          </div>
+
+          <div id="music">
+            <div id="musicDropdown" class="dropdown-content">
+              <a href="#" onclick="play_music('hGIW2fDb0jg', this.id); toggleMusicDropdown();" id="change1">Coding music</a>
+              <a href="#" onclick="play_music('sjkrrmBnpGE', this.id); toggleMusicDropdown();" id="change3">Studying</a>
+              <a href="#" onclick="play_music('jgpJVI3tDbY', this.id); toggleMusicDropdown();" id="change7">Piano</a>
+              <a href="#" onclick="play_music('neV3EPgvZ3g', this.id); toggleMusicDropdown();" id="change8">Jazz</a>
+              <a href="#" onclick="play_music('lE6RYpe9IT0', this.id); toggleMusicDropdown();" id="change2">Nature</a>
+              <a href="#" onclick="play_music('vPhg6sc1Mk4', this.id); toggleMusicDropdown();" id="change10">Ocean</a>
+              <a href="#" onclick="play_music('co7KgV2edvI', this.id); toggleMusicDropdown();" id="change9">Airplane</a>
+              <a href="#" onclick="play_music('TA4mhuFF-Go', this.id); toggleMusicDropdown();" id="change11">Train</a>
+              <a href="#" onclick="play_music('b3uIKzgcDxo', this.id); toggleMusicDropdown();" id="change4">Killer tomatoes</a>
+              <a href="#" onclick="play_music('none', this.id); toggleMusicDropdown();" id="change5">None</a>
+              <a href="#" onclick="play_music('custom', this.id); toggleMusicDropdown(); openModule('music-module');" id="change6">Custom</a>
+            </div>
+            <button id="control-btn" title="select music">Studying music</button>
+          </div>
+        </div>
+      </div>
+      <div class="cell"></div>
+    </div>
+
+<!--  Start of modules    -->
+    <div id="customize-module" class="modal">
+      <form class="modal-content animate" onsubmit="return false;">
+        <div class="imgcontainer">
+          <div class="title-row">
+            <div class="cell">
+              <span class="form-title">Изменить интервалы</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="container">
+          <label class="input-title"><b>Pomodoro</b></label>
+          <input type="number" min="0" max="120" value="25" name="pomodoro-time" id="pomodoro-time_input" required>
+
+          <label class="input-title"><b>Короткий перерыв</b></label>
+          <input type="number" min="1" max="120" value="5" name="short-break" id="short-break_input" required>
+
+          <label class="input-title"><b>Долгий перерыв</b></label>
+          <input type="number" min="1" max="120" value="15" name="long-break" id="long-break_input" required>
+
+          <button type="submit" onclick="defineIntervals();" class="login-btn">Подтвердить</button>
+        </div>
+      </form>
+    </div>
+    <div id="music-module" class="modal">
+      <form class="modal-content animate" onsubmit="return false;" >
+        <div class="imgcontainer">
+          <div class="title-row">
+            <div class="cell">
+              <span class="form-title">Настройки музыки</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="container">
+          <label class="input-title"><b>Громкость</b></label>
+          <input type="number" min="0" max="100" value="100" id="music-volume" required>
+
+          <label class="input-title"><b>Громкость к концу</b></label>
+          <input type="number" min="0" max="100" value="20" id="timer-volume" required>
+          <button type="submit" onclick="defineMusic()" class="login-btn">Подтвердить</button>
+        </div>
+      </form>
+    </div>
+  </div>
+</body>
+</html>
